@@ -24,4 +24,20 @@ class AuthProvider extends ChangeNotifier{
 
     }
   }
+
+  Future<String> signUp(String email, String password) async {
+    try{
+      _isLoading = true;
+      notifyListeners();
+     await _fb.createUserWithEmailAndPassword(email: email.trim(), password: password.trim());
+     _isLoading = false;
+     notifyListeners();
+     return Future.value('');
+    } on FirebaseAuthException catch (ex) {
+      _isLoading = false;
+      notifyListeners();
+      return Future.value(ex.message);
+
+    }
+  }
 }

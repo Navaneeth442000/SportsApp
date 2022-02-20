@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/auth_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:sportsapp/screens/organizer_page.dart';
 
 class ScreenSignupOrganizer extends StatefulWidget {
   const ScreenSignupOrganizer({ Key? key }) : super(key: key);
@@ -9,18 +12,36 @@ class ScreenSignupOrganizer extends StatefulWidget {
 
 class _ScreenSignupOrganizerState extends State<ScreenSignupOrganizer> {
 
-  final _nameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
-  final _usernameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
-  final _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool _isDataMatched = true;
 
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void signUp(AuthProvider provider)async {
+    final msg = await provider.signUp(_usernameController.text, _passwordController.text);
+    if(msg == '') Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));;
+    
+
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  @override
   Widget build(BuildContext context) {
+   final authProvider = context.watch<AuthProvider>();
     return Scaffold(
 
               resizeToAvoidBottomInset: false,
@@ -121,13 +142,13 @@ class _ScreenSignupOrganizerState extends State<ScreenSignupOrganizer> {
                                 ),
                                 // hintText: 'Username',
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Username';
-                                } else {
-                                  return null;
-                                }
-                              },
+                              // validator: (value) {
+                              //   if (value == null || value.isEmpty) {
+                              //     return 'Enter Username';
+                              //   } else {
+                              //     return null;
+                              //   }
+                              // },
                             ),SizedBox(
                               height: 10,
                             ),
@@ -152,13 +173,13 @@ class _ScreenSignupOrganizerState extends State<ScreenSignupOrganizer> {
                                 ),
                                 // hintText: 'Username',
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Username';
-                                } else {
-                                  return null;
-                                }
-                              },
+                              // validator: (value) {
+                              //   if (value == null || value.isEmpty) {
+                              //     return 'Enter Username';
+                              //   } else {
+                              //     return null;
+                              //   }
+                              // },
                             ),
                             const SizedBox(
                               height: 10,
@@ -184,25 +205,31 @@ class _ScreenSignupOrganizerState extends State<ScreenSignupOrganizer> {
                                 ),
                                 // hintText: 'Password',
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Password';
-                                } else {
-                                  return null;
-                                }
-                              },
+                              // validator: (value) {
+                              //   if (value == null || value.isEmpty) {
+                              //     return 'Enter Password';
+                              //   } else {
+                              //     return null;
+                              //   }
+                              // },
                             ),
+                            if(authProvider.loading)
+                          const CircularProgressIndicator(
+                            strokeWidth: 3,
+                          ),
+                           if(!authProvider.loading)
                             const SizedBox(
                               height: 30,
                             ),
                             Center(
                               child: ElevatedButton(
-                              onPressed: () {
-                                // if (_formKey.currentState!.validate()) {
-                                //   checkLogin(context);
-                                // } else {}
+                              onPressed: () => signUp(authProvider),
+                              // {
+                              //   if (_formKey.currentState!.validate()) {
+                              //     checkLogin(context);
+                              //   } else {}
                                 
-                              },
+                              // },
                               child: const Text(
                                 'Sign Up',
                                 style: TextStyle(

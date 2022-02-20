@@ -68,7 +68,7 @@ class ScreenLoginSelection extends StatelessWidget {
                         ),
                         OutlinedButton(
                           onPressed: () {
-                            Navigator.of(context).push(
+                            Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (ctx) => ScreenOrganizerLogin(),
                               ),
@@ -92,7 +92,7 @@ class ScreenLoginSelection extends StatelessWidget {
                         ),
                         OutlinedButton(
                           onPressed: () {
-                            Navigator.of(context).push(
+                            Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (ctx) => ScreenUserLogin(),
                               ),

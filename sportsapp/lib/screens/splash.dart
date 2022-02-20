@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportsapp/auth_provider.dart';
+import 'package:sportsapp/main.dart';
 import 'package:sportsapp/screens/login_selection.dart';
 import 'package:provider/provider.dart';
+import 'package:sportsapp/screens/organizer_page.dart';
 
 class ScreenSplash extends StatefulWidget {
   const ScreenSplash({ Key? key }) : super(key: key);
@@ -58,4 +61,15 @@ class _ScreenSplashState extends State<ScreenSplash> {
       ),
     );
   }
+  // Future<void> checkUserLoggedIn() async {
+  //   final _sharedPrefs = await SharedPreferences.getInstance();
+  //   final  _userLoggedIn = _sharedPrefs.getBool(SAVE_KEY_NAME);
+  //   if(_userLoggedIn == null || _userLoggedIn == false)
+  //   {
+  //     gotoLogin();
+  //   }
+  //   else{
+  //     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
+  //   }
+  // }
 }

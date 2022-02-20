@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/signup_user.dart';
 import 'package:sportsapp/screens/user_page.dart';
 
@@ -32,12 +33,18 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
                 flex: 3,
                 child: Container(
                   width: double.infinity,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 25.0, left: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0, left: 5.0),
+                        child: IconButton(onPressed: () {
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenLoginSelection()));
+                          }, icon: Icon(Icons.arrow_back_ios_new_rounded)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0, left: 25.0),
+                        child: Text(
                           'Welcome Back',
                           style: TextStyle(
                             fontSize: 30,
@@ -45,17 +52,17 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
                           ),
                           // textAlign: TextAlign.center,
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0, left: 25.0),
+                        child: Text(
                           'Sign in back into your account',
                           style: TextStyle(
                             fontSize: 15,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   decoration: const BoxDecoration(
                     color: Colors.white,

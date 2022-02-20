@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sportsapp/auth_provider.dart';
+import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/organizer_page.dart';
 import 'package:sportsapp/screens/signup_organizer.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +33,7 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
 
   void signIn(AuthProvider provider)async {
     final msg = await provider.signIn(_usernameController.text, _passwordController.text);
-    if(msg == '') Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));;
+    if(msg == '') Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));;
     
 
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -56,12 +56,18 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
               flex: 3,
               child: Container(
                 width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 25.0, left: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0, left: 5.0),
+                      child: IconButton(onPressed: () {
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenLoginSelection()));
+                          }, icon: Icon(Icons.arrow_back_ios_new_rounded)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0, left: 25.0),
+                      child: Text(
                         'Welcome Back',
                         style: TextStyle(
                           fontSize: 30,
@@ -69,17 +75,17 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
                         ),
                         // textAlign: TextAlign.center,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0, left: 25.0),
+                      child: Text(
                         'Sign in back into your account',
                         style: TextStyle(
                           fontSize: 15,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -263,16 +269,16 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
       ),
     );
   }
-  Future<void> checkLogin(BuildContext ctx) async {
-    final _username = _usernameController.text;
-    final _password = _passwordController.text;
-    if (_username == 'admin' && _password == 'admin') {
-      // Goto Donor Page
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
-    } else {
-      print('Invalid');
-    }
-  }
+  // Future<void> checkLogin(BuildContext ctx) async {
+  //   final _username = _usernameController.text;
+  //   final _password = _passwordController.text;
+  //   if (_username == 'admin' && _password == 'admin') {
+  //     // Goto Donor Page
+  //     Navigator.of(context)
+  //         .push(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
+  //   } else {
+  //     print('Invalid');
+  //   }
+  // }
 
 }
