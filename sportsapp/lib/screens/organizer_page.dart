@@ -9,15 +9,20 @@ class ScreenOrganizer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: context.watch<AuthProvider>().stream(),
-      builder: (context, snapshot) {
-        if(!snapshot.hasData) return const ScreenLoginSelection();
-        return Scaffold(
-          body: SafeArea(child: Text('OrgA')),
+  //   return StreamBuilder<User?>(
+  //     stream: context.watch<AuthProvider>().stream(),
+  //     builder: (context, snapshot) {
+  //       if(!snapshot.hasData) return const ScreenLoginSelection();
+  //       return Scaffold(
+  //         body: SafeArea(child: Text('OrgA')),
           
-        );
-      }
-    );
-  }
+  //       );
+  //     }
+  //   );
+  // }
+  return Scaffold(
+    body: SafeArea(child: Text('OrgA')),
+  );
+
+}
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportsapp/auth_provider.dart';
 import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/organizer_page.dart';
@@ -33,7 +34,11 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
 
   void signIn(AuthProvider provider)async {
     final msg = await provider.signIn(_usernameController.text, _passwordController.text);
-    if(msg == '') Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));;
+
+    if(msg == '') {
+      setData();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
+    };
     
 
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -268,6 +273,11 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
         ),
       ),
     );
+  }
+
+  Future<void> setData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool('isLoggedIn', true);
   }
   // Future<void> checkLogin(BuildContext ctx) async {
   //   final _username = _usernameController.text;
