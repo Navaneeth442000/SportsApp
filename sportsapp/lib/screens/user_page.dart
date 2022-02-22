@@ -37,7 +37,7 @@ class _ScreenUserState extends State<ScreenUser> {
                     icon: Icon(Icons.logout_rounded,color: Colors.white,)),
               ),
               Text(
-                'Register Tournament',
+                'USER',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,

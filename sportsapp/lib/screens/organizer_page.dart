@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,14 +15,24 @@ class ScreenOrganizer extends StatefulWidget {
 }
 
 class _ScreenOrganizerState extends State<ScreenOrganizer> {
-  final TextEditingController _orgName = TextEditingController();
-  final TextEditingController _place = TextEditingController();
-  final TextEditingController _date = TextEditingController();
-  final TextEditingController _time = TextEditingController();
-  final TextEditingController _price = TextEditingController();
+  // final TextEditingController _orgName = TextEditingController();
+  // final TextEditingController _place = TextEditingController();
+  // final TextEditingController _date = TextEditingController();
+  // final TextEditingController _time = TextEditingController();
+  // final TextEditingController _price = TextEditingController();
+
+
 
   String dropDownValue = "Foot Ball";
   var items = ["Foot Ball", "Cricket", "Badminton", "VolleyBall"];
+
+  CollectionReference post = FirebaseFirestore.instance.collection('posts');
+  late String orgname;
+  late String place;
+  late String date;
+  late String time;
+  late String price;
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +69,11 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
                 height: 10,
               ),
               TextFormField(
-                controller: _orgName,
+                style: TextStyle(color: Colors.white),
+                // controller: _orgName,
+                onChanged: (value) {
+                  orgname = value;
+                },
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.group,
@@ -114,7 +129,11 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
                 height: 10,
               ),
               TextFormField(
-                controller: _place,
+                style: TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  place = value;
+                },
+                // controller: _place,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.place,
@@ -138,7 +157,12 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
                 height: 10,
               ),
               TextFormField(
-                controller: _date,
+                style: TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  date = value;
+                },
+                
+                // controller: _date,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.date_range,
@@ -162,7 +186,11 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
                 height: 10,
               ),
               TextFormField(
-                controller: _time,
+                style: TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  time = value;
+                },
+                // controller: _time,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.timelapse,
@@ -186,7 +214,11 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
                 height: 10,
               ),
               TextFormField(
-                controller: _price,
+                style: TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  price = value;
+                },
+                // controller: _price,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.money,
@@ -211,8 +243,21 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
               ),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
+                  onPressed: ()  {
+
+                    //  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
+                     post.add({
+                      'OrgName' : orgname,
+                      'Sport' : dropDownValue,
+                      'Place' : place,
+                      'Date' : date,
+                      'Time' : time,
+                      'Price' : int.parse(price),
+                    }).then((value) {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
+                    });
+
+                    // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
                   },
                   child: const Text(
                     'Submit',

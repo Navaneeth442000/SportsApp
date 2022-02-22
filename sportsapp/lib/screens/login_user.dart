@@ -259,6 +259,6 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
   Future<void> setData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool('isLoggedIn', true);
-    pref.setString('Type', 'User');
+    // pref.setString('Type', 'User');
   }
 }
