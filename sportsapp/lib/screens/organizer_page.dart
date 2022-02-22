@@ -45,19 +45,13 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 330, top: 13),
-              //   child: IconButton(
-              //       onPressed: () {
-              //         clearData();
-              //         Navigator.of(context).pushReplacement(MaterialPageRoute(
-              //             builder: (ctx) => ScreenLoginSelection()));
-              //       },
-              //       icon: Icon(
-              //         Icons.logout_rounded,
-              //         color: Colors.white,
-              //       )),
-              // ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0,),
+                child: IconButton(onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
+                }, icon: Icon(Icons.arrow_back_ios_new_rounded,color: Colors.white,)),
+              ),
+              SizedBox(height: 20,),
               Text(
                 'Register Tournament',
                 style: TextStyle(
@@ -243,10 +237,10 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
               ),
               Center(
                 child: ElevatedButton(
-                  onPressed: ()  {
+                  onPressed: () async {
 
                     //  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
-                     post.add({
+                     await post.add({
                       'OrgName' : orgname,
                       'Sport' : dropDownValue,
                       'Place' : place,
