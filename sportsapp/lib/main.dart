@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sportsapp/auth_provider.dart';
-import 'package:sportsapp/screens/sample.dart';
+import 'package:sportsapp/screens/splash.dart';
 import 'package:sportsapp/screens/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';

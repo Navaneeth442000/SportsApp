@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sportsapp/auth_provider.dart';
 import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/signup_user.dart';
 import 'package:sportsapp/screens/user_page.dart';
+import 'package:provider/provider.dart';
 
 class ScreenUserLogin extends StatefulWidget {
   const ScreenUserLogin({ Key? key }) : super(key: key);
@@ -20,7 +23,29 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void signIn(AuthProvider provider)async {
+    final msg = await provider.signIn(_usernameController.text, _passwordController.text);
+
+    if(msg == '') {
+      setData();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenUser()));
+    };
+    
+
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = context.watch<AuthProvider>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
@@ -127,13 +152,13 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
                                 // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: ),),
                                 // hintText: 'Username',
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Username';
-                                } else {
-                                  return null;
-                                }
-                              },
+                              // validator: (value) {
+                              //   if (value == null || value.isEmpty) {
+                              //     return 'Enter Username';
+                              //   } else {
+                              //     return null;
+                              //   }
+                              // },
                             ),
                             const SizedBox(
                               height: 10,
@@ -159,24 +184,20 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
                                 ),
                                 // hintText: 'Password',
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Password';
-                                } else {
-                                  return null;
-                                }
-                              },
+                              // validator: (value) {
+                              //   if (value == null || value.isEmpty) {
+                              //     return 'Enter Password';
+                              //   } else {
+                              //     return null;
+                              //   }
+                              // },
                             ),
                             const SizedBox(
                               height: 30,
                             ),
                             Center(
                               child: ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  checkLogin(context);
-                                } else {}
-                              },
+                              onPressed: () => signIn(authProvider),
                               child: const Text(
                                 'Sign In',
                                 style: TextStyle(
@@ -233,5 +254,11 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
     } else {
       print('Invalid');
     }
+  }
+
+  Future<void> setData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool('isLoggedIn', true);
+    pref.setString('Type', 'User');
   }
 }

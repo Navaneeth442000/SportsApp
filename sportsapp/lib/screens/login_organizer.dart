@@ -5,6 +5,7 @@ import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/organizer_page.dart';
 import 'package:sportsapp/screens/signup_organizer.dart';
 import 'package:provider/provider.dart';
+import 'package:sportsapp/screens/view_post.dart';
 
 class ScreenOrganizerLogin extends StatefulWidget {
   const ScreenOrganizerLogin({ Key? key }) : super(key: key);
@@ -37,7 +38,7 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
 
     if(msg == '') {
       setData();
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
     };
     
 
@@ -278,6 +279,7 @@ class _ScreenOrganizerLoginState extends State<ScreenOrganizerLogin> {
   Future<void> setData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool('isLoggedIn', true);
+    pref.setString('Type', 'Organizer');
   }
   // Future<void> checkLogin(BuildContext ctx) async {
   //   final _username = _usernameController.text;

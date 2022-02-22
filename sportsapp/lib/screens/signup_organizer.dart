@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sportsapp/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sportsapp/screens/organizer_page.dart';
+import 'package:sportsapp/screens/view_post.dart';
 
 class ScreenSignupOrganizer extends StatefulWidget {
   const ScreenSignupOrganizer({ Key? key }) : super(key: key);
@@ -32,7 +33,7 @@ class _ScreenSignupOrganizerState extends State<ScreenSignupOrganizer> {
 
   void signUp(AuthProvider provider)async {
     final msg = await provider.signUp(_usernameController.text, _passwordController.text);
-    if(msg == '') Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));;
+    if(msg == '') Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));;
     
 
     ScaffoldMessenger.of(context).hideCurrentSnackBar();

@@ -8,7 +8,7 @@ class ScreenLoginSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent[700],
+      backgroundColor: Colors.grey[700],
       // backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
@@ -30,7 +30,7 @@ class ScreenLoginSelection extends StatelessWidget {
                   ),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent[700],
+                  color: Colors.grey[700],
                   // color: Colors.black,
                 ),
               ),
@@ -59,7 +59,7 @@ class ScreenLoginSelection extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 50,
                               fontWeight: FontWeight.w800,
-                              color: Colors.blueAccent[700],
+                              color: Colors.grey[700],
                             ),
                           ),
                         ),
@@ -81,10 +81,10 @@ class ScreenLoginSelection extends StatelessWidget {
                             ),
                           ),
                           style: OutlinedButton.styleFrom(
-                            primary: Colors.blueAccent[700],
+                            primary: Colors.grey[700],
                             fixedSize: Size(200, 50),
                             shape: StadiumBorder(),
-                            side: BorderSide(color: Colors.blueAccent),
+                            side: BorderSide(color: Colors.grey),
                           ),
                         ),
                         SizedBox(
@@ -105,10 +105,10 @@ class ScreenLoginSelection extends StatelessWidget {
                             ),
                           ),
                           style: OutlinedButton.styleFrom(
-                            primary: Colors.blueAccent[700],
+                            primary: Colors.grey[700],
                             fixedSize: Size(200, 50),
                             shape: StadiumBorder(),
-                            side: BorderSide(color: Colors.blueAccent),
+                            side: BorderSide(color: Colors.grey),
                           ),
                         ),
                       ],
