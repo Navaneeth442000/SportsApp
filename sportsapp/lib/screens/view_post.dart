@@ -1,6 +1,8 @@
 // import 'dart:html';
 // import 'dart:js';
 
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,6 +17,7 @@ class ScreenPost extends StatefulWidget {
 }
 
 class _ScreenPostState extends State<ScreenPost> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,9 +58,17 @@ class _ScreenPostState extends State<ScreenPost> {
                     child: ListView(
                       children: snapshot.data!.docs.map((document) {
                         return ListTile(
-                          title: Text(document["OrgName"]),
-                          subtitle: Text(document["Place"]),
+                          leading: Text(document["OrgName"]),
+                          title: Text(document["Place"]),
+                          subtitle: Text(document["Sport"]),
                           trailing: Text(document["Date"]),
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+                              
+                              return ScreenOrganizer();
+
+                            }));
+                          },
                         );
                       }).toList(),
                     ),
