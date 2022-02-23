@@ -5,7 +5,7 @@ import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/organizer_page.dart';
 import 'package:sportsapp/screens/signup_organizer.dart';
 import 'package:provider/provider.dart';
-import 'package:sportsapp/screens/view_post.dart';
+import 'package:sportsapp/screens/organizer_view_post.dart';
 
 class ScreenOrganizerLogin extends StatefulWidget {
   const ScreenOrganizerLogin({ Key? key }) : super(key: key);

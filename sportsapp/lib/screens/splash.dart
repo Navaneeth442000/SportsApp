@@ -7,7 +7,8 @@ import 'package:sportsapp/main.dart';
 import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/organizer_page.dart';
 import 'package:sportsapp/screens/user_page.dart';
-import 'package:sportsapp/screens/view_post.dart';
+import 'package:sportsapp/screens/user_post_view.dart';
+import 'package:sportsapp/screens/organizer_view_post.dart';
 // import 'package:sportsapp/screens/login_selection.dart';
 
 class Splash extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SplashState extends State<Splash> {
                       return ScreenPost();
                     })):Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (ctx) {
-                      return ScreenUser();}))
+                      return ScreenUserPostView();}))
                   : Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (ctx) {
                       return ScreenLoginSelection();

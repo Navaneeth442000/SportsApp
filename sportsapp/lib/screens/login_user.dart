@@ -5,6 +5,7 @@ import 'package:sportsapp/screens/login_selection.dart';
 import 'package:sportsapp/screens/signup_user.dart';
 import 'package:sportsapp/screens/user_page.dart';
 import 'package:provider/provider.dart';
+import 'package:sportsapp/screens/user_post_view.dart';
 
 class ScreenUserLogin extends StatefulWidget {
   const ScreenUserLogin({ Key? key }) : super(key: key);
@@ -35,7 +36,7 @@ class _ScreenUserLoginState extends State<ScreenUserLogin> {
 
     if(msg == '') {
       setData();
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenUser()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenUserPostView()));
     };
     
 

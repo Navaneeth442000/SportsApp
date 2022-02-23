@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportsapp/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sportsapp/screens/login_selection.dart';
-import 'package:sportsapp/screens/view_post.dart';
+import 'package:sportsapp/screens/organizer_view_post.dart';
 
 class ScreenOrganizer extends StatefulWidget {
   const ScreenOrganizer({Key? key}) : super(key: key);
@@ -64,7 +64,6 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
               ),
               TextFormField(
                 style: TextStyle(color: Colors.white),
-                // controller: _orgName,
                 onChanged: (value) {
                   orgname = value;
                 },
@@ -246,7 +245,7 @@ class _ScreenOrganizerState extends State<ScreenOrganizer> {
                       'Place' : place,
                       'Date' : date,
                       'Time' : time,
-                      'Price' : int.parse(price),
+                      'Price' : price,
                     }).then((value) {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenPost()));
                     });

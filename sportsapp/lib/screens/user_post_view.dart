@@ -1,35 +1,20 @@
-// import 'dart:html';
-// import 'dart:js';
-
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportsapp/screens/login_selection.dart';
-import 'package:sportsapp/screens/organizer_page.dart';
+import 'package:sportsapp/screens/user_page.dart';
 
-class ScreenPost extends StatefulWidget {
-  const ScreenPost({Key? key}) : super(key: key);
+class ScreenUserPostView extends StatefulWidget {
+  const ScreenUserPostView({ Key? key }) : super(key: key);
 
   @override
-  State<ScreenPost> createState() => _ScreenPostState();
+  State<ScreenUserPostView> createState() => _ScreenUserPostViewState();
 }
 
-class _ScreenPostState extends State<ScreenPost> {
-  
+class _ScreenUserPostViewState extends State<ScreenUserPostView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
-          });
-        },
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -58,14 +43,29 @@ class _ScreenPostState extends State<ScreenPost> {
                     child: ListView(
                       children: snapshot.data!.docs.map((document) {
                         return ListTile(
-                          leading: Text(document["OrgName"]),
-                          title: Text(document["Place"]),
-                          subtitle: Text(document["Sport"]),
-                          trailing: Text(document["Date"]),
+                          leading: Text(document["Sport"]),
+                          title: Text(document["OrgName"]),
+                          subtitle: Column(
+                            children: [
+                              Text(document["Place"]),
+                              Row(
+                                children: [
+                                  Text('Price'),
+                                  Text(document["Price"]),
+                                ],
+                              )
+                            ],
+                          ),
+                          trailing: Column(
+                            children: [
+                              Text(document["Date"]),
+                              Text(document["Time"]),
+                            ],
+                          ),
                           onTap: (){
                             Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
                               
-                              return ScreenOrganizer();
+                              return ScreenUser();
 
                             }));
                           },
