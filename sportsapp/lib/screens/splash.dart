@@ -39,7 +39,7 @@ class _SplashState extends State<Splash> {
         Duration(seconds: 5),
         () => {
               CheckLogin().then((isLogged) => isLogged
-                  ? CheckType() == 'Organizer' ? Navigator.pushReplacement(context,
+                  ? CheckType().toString().toString() == 'Organizer' ? Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (ctx) {
                       return ScreenPost();
                     })):Navigator.pushReplacement(context,

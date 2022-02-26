@@ -1,19 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sportsapp/screens/login_selection.dart';
-import 'package:sportsapp/screens/organizer_view_post.dart';
+import 'package:sportsapp/screens/admin_selection.dart';
 
-class ScreenOrganizerPost extends StatefulWidget {
-  const ScreenOrganizerPost({ Key? key }) : super(key: key);
+class ScreenAdminUser extends StatelessWidget {
+  const ScreenAdminUser({Key? key}) : super(key: key);
 
-  @override
-  State<ScreenOrganizerPost> createState() => _ScreenOrganizerPostState();
-}
-
-class _ScreenOrganizerPostState extends State<ScreenOrganizerPost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[200],
       body: SafeArea(
         child: Column(
           children: [
@@ -25,9 +20,10 @@ class _ScreenOrganizerPostState extends State<ScreenOrganizerPost> {
                     padding: const EdgeInsets.only(right: 100),
                     child: IconButton(
                         onPressed: () {
-                          
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (ctx) => ScreenPost()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (ctx) =>
+                                      ScreenAdminViewSelection()));
                         },
                         icon: Icon(
                           Icons.arrow_back_ios_new_rounded,
@@ -37,11 +33,15 @@ class _ScreenOrganizerPostState extends State<ScreenOrganizerPost> {
                 ],
               ),
             ),
-            Text('Interested',style: TextStyle(fontSize: 20),),
+            Text(
+              'Registered Users',
+              style: TextStyle(fontSize: 20),
+            ),
             SizedBox(height: 20,),
             StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection("Interested").snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection("Interested")
+                  .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return CircularProgressIndicator();
@@ -59,9 +59,9 @@ class _ScreenOrganizerPostState extends State<ScreenOrganizerPost> {
                             ],
                           ),
                           trailing: Text(document["Mobile"]),
-                          onTap: (){
+                          onTap: () {
                             // Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-                              
+
                             //   return ScreenOrganizer();
 
                             // }));
@@ -78,13 +78,4 @@ class _ScreenOrganizerPostState extends State<ScreenOrganizerPost> {
       ),
     );
   }
-
-  // Future<bool> clearData() async {
-  //   SharedPreferences prefe = await SharedPreferences.getInstance();
-  //   return prefe.clear();
-  // }
 }
-      
-//     );
-//   }
-// }

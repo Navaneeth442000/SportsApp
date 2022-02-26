@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/screens/login_admin.dart';
 import 'package:sportsapp/screens/login_organizer.dart';
 import 'package:sportsapp/screens/login_user.dart';
 
@@ -19,14 +20,21 @@ class ScreenLoginSelection extends StatelessWidget {
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: Text(
-                    'Welcome',
-                    // textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 43,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Welcome',
+                        // textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 43,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                      IconButton(onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenAdmin()));
+                      }, icon: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,)),
+                    ],
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -63,6 +71,7 @@ class ScreenLoginSelection extends StatelessWidget {
                             ),
                           ),
                         ),
+                        
                         SizedBox(
                           height: 40,
                         ),

@@ -15,6 +15,7 @@ class _ScreenUserPostViewState extends State<ScreenUserPostView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           children: [
@@ -28,10 +29,11 @@ class _ScreenUserPostViewState extends State<ScreenUserPostView> {
                   },
                   icon: Icon(
                     Icons.logout_rounded,
-                    color: Colors.black,
+                    color: Colors.white,
                   )),
             ),
-            Text('Post'),
+            Text('Tournament',style: TextStyle(color: Colors.white,fontSize: 20),),
+            SizedBox(height: 20,),
             StreamBuilder<QuerySnapshot>(
               stream:
                   FirebaseFirestore.instance.collection("posts").snapshots(),
@@ -43,23 +45,23 @@ class _ScreenUserPostViewState extends State<ScreenUserPostView> {
                     child: ListView(
                       children: snapshot.data!.docs.map((document) {
                         return ListTile(
-                          leading: Text(document["Sport"]),
-                          title: Text(document["OrgName"]),
+                          leading: Text(document["Sport"],style: TextStyle(color: Colors.white),),
+                          title: Text(document["OrgName"],style: TextStyle(color: Colors.white),),
                           subtitle: Column(
                             children: [
-                              Text(document["Place"]),
+                              Text(document["Place"],style: TextStyle(color: Colors.white),),
                               Row(
                                 children: [
-                                  Text('Price'),
-                                  Text(document["Price"]),
+                                  Text('Price',style: TextStyle(color: Colors.white),),
+                                  Text(document["Price"],style: TextStyle(color: Colors.white),),
                                 ],
                               )
                             ],
                           ),
                           trailing: Column(
                             children: [
-                              Text(document["Date"]),
-                              Text(document["Time"]),
+                              Text(document["Date"],style: TextStyle(color: Colors.white),),
+                              Text(document["Time"],style: TextStyle(color: Colors.white),),
                             ],
                           ),
                           onTap: (){
