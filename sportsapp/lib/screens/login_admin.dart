@@ -206,6 +206,7 @@ class _ScreenAdminState extends State<ScreenAdmin> {
                               {
                                 if (_formKey.currentState!.validate()) {
                                   checkLogin(context);
+                                  // setData();
                                 } else {}
                               },
                               child: const Text(
@@ -251,10 +252,11 @@ class _ScreenAdminState extends State<ScreenAdmin> {
     );
   }
 
-  Future<void> setData() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setBool('isLoggedIn', true);
-  }
+  // Future<void> setData() async {
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   pref.setBool('isLoggedIn', true);
+  //   pref.setString('Type', 'Organizer');
+  // }
   Future<void> checkLogin(BuildContext ctx) async {
     final _username = _usernameController.text;
     final _password = _passwordController.text;

@@ -39,7 +39,7 @@ class _SplashState extends State<Splash> {
         Duration(seconds: 5),
         () => {
               CheckLogin().then((isLogged) => isLogged
-                  ? CheckType().toString().toString() == 'Organizer' ? Navigator.pushReplacement(context,
+                  ? CheckType().toString() == 'Organizer' ? Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (ctx) {
                       return ScreenPost();
                     })):Navigator.pushReplacement(context,
@@ -78,7 +78,7 @@ class _SplashState extends State<Splash> {
     // TODO: implement dispose
     super.dispose();
   }
-
+}
   // Future<void> gotoLogin() async {
   //   await Future.delayed(Duration(seconds: 3));
   //   Navigator.of(context).pushReplacement(
@@ -99,4 +99,3 @@ class _SplashState extends State<Splash> {
   //     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenOrganizer()));
   //   }
   // }
-}
